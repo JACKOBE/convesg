@@ -181,18 +181,3 @@ pred = CART_Reg.predict(X_test)
 # 计算衡量模型好坏的MSE值
 metrics.mean_squared_error(y_test, pred)
 
-
-# 构建用于回归的随机森林
-RF = ensemble.RandomForestRegressor(n_estimators=200, random_state=1234)
-# 随机森林拟合
-RF.fit(X_train, y_train)
-# 模型在测试集上的预测
-RF_pred = RF.predict(X_test)
-# 计算模型的MSE值
-metrics.mean_squared_error(y_test, RF_pred)
-
-# 构建变量重要性的序列
-importance = pd.Series(RF.feature_importances_, index = X_train.columns)
-# 排序并绘图
-importance.sort_values().plot('barh')
-plt.show()																	
